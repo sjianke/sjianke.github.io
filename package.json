@@ -1,10 +1,23 @@
 {
-  "devDependencies": {
-    "vitepress": "^1.5.0"
+  "name": "sjianke-blog",
+  "description": "记录",
+  "keywords": [
+    "vitepress"
+  ],
+  "author": {
+    "name": "sjianke"
   },
+  "homepage": "https://sjianke.github.com",
+  "repository": "github:sjianke/sjianke.github.io",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.5.0"
+  },
+  "engines": {
+    "node": ">= 20.0.0"
   }
 }

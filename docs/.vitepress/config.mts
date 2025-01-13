@@ -1,28 +1,19 @@
 import { defineConfig } from 'vitepress'
+import { shared } from './shared'
+import { zh } from './zh'
+import { en } from './en'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'sjianke',
-  description: '个人记录',
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-    ],
-
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-        ],
-      },
-    ],
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
-    ],
+  ...shared,
+  locales: {
+    root: {
+      label: '简体中文',
+      ...zh,
+    },
+    en: {
+      label: 'English',
+      ...en,
+    },
   },
 })
