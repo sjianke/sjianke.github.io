@@ -52,7 +52,7 @@ git reset --soft HEAD^
 
 ## 7.推送到远程仓库
 
-注意： 需要先有远程仓库 [点击这里查看](http://localhost:5174/zh/other/git/basic-examples.html#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
+注意： 需要先有远程仓库 [点击这里查看](/zh/other/git/basic-examples.html#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
 
 ```sh
 # 推送到远程 master 分支
