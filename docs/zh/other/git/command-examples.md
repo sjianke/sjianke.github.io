@@ -1,15 +1,19 @@
 # git 命令
 
+来源：<https://gitee.com/all-about-git>
+
 ## 获取帮助
 
 ```sh
+# 获取帮助
 $ git help <verb>
 $ git <verb> --help
-# 查看某项命令手册，例如：config 命令
+
+# 示例 - 查看某项命令手册，例如：config 命令
 $ git help config
 ```
 
-## 配置
+## 设置和配置
 
 ```sh
 
@@ -310,4 +314,4 @@ $ git stash pop
 $ git archive
 ```
 
-来源：<https://gitee.com/all-about-git>
+

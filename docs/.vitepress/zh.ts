@@ -11,9 +11,17 @@ export const zh = defineConfig({
         base: '/zh/web/javascript/',
         items: sidebarJavascript(),
       },
+      '/zh/service/nginx/': {
+        base: '/zh/service/nginx/',
+        items: sidebarNginx(),
+      },
       '/zh/other/git/': {
         base: '/zh/other/git/',
         items: sidebarGit(),
+      },
+      '/zh/other/linux/': {
+        base: '/zh/other/linux/',
+        items: sidebarLinux(),
       },
     },
 
@@ -24,6 +32,7 @@ export const zh = defineConfig({
 
     outline: {
       label: '页面导航',
+      level: [2, 3],
     },
 
     lastUpdated: {
@@ -50,7 +59,7 @@ function nav(): DefaultTheme.NavItem[] {
       text: '前端',
       items: [
         {
-          text: '前端三剑客',
+          text: '三剑客',
           items: [
             {
               text: 'HTML',
@@ -90,7 +99,11 @@ function nav(): DefaultTheme.NavItem[] {
       items: [
         { text: 'Node.js', link: '/nodejs-examples' },
         { text: 'MySQL', link: '/mysql-examples' },
-        { text: 'Nginx', link: '/nginx-examples' },
+        {
+          text: 'Nginx',
+          link: '/zh/service/nginx/basic-examples',
+          activeMatch: '/zh/service/nginx/',
+        },
       ],
     },
     {
@@ -102,7 +115,7 @@ function nav(): DefaultTheme.NavItem[] {
           activeMatch: '/zh/other/git/',
         },
         { text: 'HTTP', link: '/http-examples' },
-        { text: 'Linux', link: '/linux-examples' },
+        { text: 'Linux', link: '/zh/other/linux/basic-examples' },
         { text: 'Shell', link: '/shell-examples' },
       ],
     },
@@ -157,8 +170,68 @@ function sidebarGit(): DefaultTheme.SidebarItem[] {
           link: 'command-examples',
         },
         {
-          text: '提交步骤',
+          text: '流程',
           link: 'step-examples',
+        },
+      ],
+    },
+  ]
+}
+
+function sidebarLinux(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Linux',
+      items: [
+        {
+          text: '基础',
+          link: 'basic-examples',
+        },
+        {
+          text: '命令',
+          link: 'command-examples',
+        },
+        {
+          text: 'Shell',
+          link: 'shell-examples',
+        },
+        {
+          text: 'Vim',
+          link: 'vim-examples',
+        },
+        {
+          text: '连接远程linux',
+          link: 'remote-examples',
+        },
+      ],
+    },
+  ]
+}
+
+function sidebarNginx(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Nginx',
+      items: [
+        {
+          text: '基础',
+          link: 'basic-examples',
+        },
+        {
+          text: '命令',
+          link: 'command-examples',
+        },
+        {
+          text: '模块',
+          link: 'module-examples',
+        },
+        {
+          text: '配置',
+          link: 'config-examples',
+        },
+        {
+          text: '反向代理',
+          link: 'proxy-examples',
         },
       ],
     },
