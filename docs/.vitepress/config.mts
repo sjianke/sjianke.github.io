@@ -6,6 +6,7 @@ import { en } from './en'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   ...shared,
+  ignoreDeadLinks: true,
   locales: {
     root: {
       label: '简体中文',

@@ -21,8 +21,6 @@ git config [--global] user.email "[email address]"
 - `--global` 选项用于设置全局配置，如果省略该选项，只会影响当前仓库的设置。
 - 配置后，可以使用 `git config --list` 查看当前的配置信息。
 
-
-
 ## 2. 创建本地仓库或克隆远程仓库
 
 ### 2.1 创建本地 `git` 仓库
@@ -52,8 +50,6 @@ git clone <path> [<name>]
 # 创建文件并写入 "Welcome to the project"
 echo "Welcome to the project" > README.md
 ```
-
-
 
 ## 4. 暂存区操作
 
@@ -91,7 +87,7 @@ git diff --cached [<filename>]
 
 ```sh
 # 查看暂存区中的文件列表
-$ git ls-files
+git ls-files
 
 ```
 
@@ -99,11 +95,9 @@ $ git ls-files
 
 ```sh
 # 撤销暂存区文件，返回工作区
-$ git reset [<filename>]
+git reset [<filename>]
 
 ```
-
-
 
 ## 5. 提交操作
 
@@ -153,7 +147,7 @@ git revert HEAD
 
 ```sh
 # 查看每个提交者的提交统计信息
-$ git shortlog
+git shortlog
 ```
 
 ## 6. 远程仓库操作
@@ -241,7 +235,7 @@ git checkout HEAD@{1}
 
 ```sh
 # 查看某个提交的详细信息，包括提交的更改内容
-$ git show <commit_hash>
+git show <commit_hash>
 
 ```
 
@@ -434,7 +428,7 @@ Git 分支是 Git 中非常重要的一部分，它允许你在项目中同时�
 
 - **`git rebase`**：会把提交记录“移动”到目标分支上，历史记录更简洁，不会产生额外的合并提交。适用于希望保持线性历史的情况，但可能会丢失合并过程的详细记录。
 
-#### 合并策略选择：
+#### 合并策略选择
 
 - 如果你需要将不同的特性分支并入主分支并且希望保留完整的合并记录，可以使用 `git merge`。
 - 如果你希望使历史提交更加整洁，并避免额外的合并提交，可以使用 `git rebase`。
@@ -481,13 +475,13 @@ git log --graph --oneline --all
 
 ```sh
 # 创建标签
-$ git tag <tag_name>
+git tag <tag_name>
 ```
 
 - **创建带注释的标签**
 
 ```sh
-$ git tag -a <tag_name> -m "Tag message"
+git tag -a <tag_name> -m "Tag message"
 ```
 
 ### 9.2 查看标签
@@ -495,19 +489,19 @@ $ git tag -a <tag_name> -m "Tag message"
 - **查看所有标签**
 
 ```sh
-$ git tag
+git tag
 ```
 
 - **查看标签详细信息**
 
 ```sh
-$ git show <tag_name>
+git show <tag_name>
 ```
 
 ### 9.3 推送标签到远程仓库
 
 ```sh
-$ git push origin <tag_name>
+git push origin <tag_name>
 ```
 
 ### 9.4 删除标签
@@ -515,7 +509,7 @@ $ git push origin <tag_name>
 - **删除本地标签**
 
 ```sh
-$ git tag -d <tag_name>
+git tag -d <tag_name>
 ```
 
 - **删除远程标签**
@@ -571,7 +565,7 @@ git submodule init
 git submodule update
 ```
 
--  **查看子模块状态**
+- **查看子模块状态**
 
 ```sh
 git submodule status
@@ -584,13 +578,11 @@ git submodule status
 git submodule deinit -f <path>
 ```
 
-
-
 ## 12. 忽略文件
 
--  **创建** `.gitignore` **文件**
+- **创建** `.gitignore` **文件**
 
-```
+```txt
 # 忽略所有 .log 文件
 *.log
 
@@ -605,8 +597,6 @@ git rm -r --cached .
 git add .
 git commit -m "Update .gitignore"
 ```
-
-
 
 ## 13. 常见命令简述
 
