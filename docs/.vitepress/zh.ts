@@ -15,6 +15,10 @@ export const zh = defineConfig({
         base: '/zh/service/nginx/',
         items: sidebarNginx(),
       },
+      '/zh/service/mysql/': {
+        base: '/zh/service/mysql/',
+        items: sidebarMySQL(),
+      },
       '/zh/other/git/': {
         base: '/zh/other/git/',
         items: sidebarGit(),
@@ -98,7 +102,11 @@ function nav(): DefaultTheme.NavItem[] {
       text: '后端',
       items: [
         { text: 'Node.js', link: '/nodejs-examples' },
-        { text: 'MySQL', link: '/mysql-examples' },
+        {
+          text: 'MySQL',
+          link: '/zh/service/mysql/basic-examples',
+          activeMatch: '/zh/service/mysql/',
+        },
         {
           text: 'Nginx',
           link: '/zh/service/nginx/basic-examples',
@@ -114,9 +122,8 @@ function nav(): DefaultTheme.NavItem[] {
           link: '/zh/other/git/basic-examples',
           activeMatch: '/zh/other/git/',
         },
-        { text: 'HTTP', link: '/http-examples' },
         { text: 'Linux', link: '/zh/other/linux/basic-examples' },
-        { text: 'Shell', link: '/shell-examples' },
+        // { text: 'HTTP', link: '/http-examples' },
       ],
     },
   ]
@@ -208,10 +215,10 @@ function sidebarLinux(): DefaultTheme.SidebarItem[] {
   ]
 }
 
-function sidebarNginx(): DefaultTheme.SidebarItem[] {
+function sidebarMySQL(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: 'Nginx',
+      text: 'MySQL',
       items: [
         {
           text: '基础',
@@ -222,16 +229,39 @@ function sidebarNginx(): DefaultTheme.SidebarItem[] {
           link: 'command-examples',
         },
         {
-          text: '模块',
-          link: 'module-examples',
+          text: 'SQL',
+          link: 'sql-examples',
+        },
+      ],
+    },
+  ]
+}
+
+function sidebarNginx(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Nginx',
+      items: [
+        {
+          text: '基础',
+          link: 'basic-examples',
         },
         {
           text: '配置',
           link: 'config-examples',
         },
+      ],
+    },
+    {
+      text: '常见问题',
+      items: [
         {
-          text: '反向代理',
+          text: '反向代理 - 跨域',
           link: 'proxy-examples',
+        },
+        {
+          text: 'vue页面刷新丢失',
+          link: 'refresh-examples',
         },
       ],
     },
