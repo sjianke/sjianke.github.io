@@ -37,7 +37,7 @@ git init
 
 ```sh
 # 从远程仓库克隆项目，并自定义本地仓库名称
-git clone <path> [<name>]
+git clone <repository_url> [<name>]
 ```
 
 **说明**：
@@ -571,11 +571,15 @@ git submodule update
 git submodule status
 ```
 
-- **移除子模块**
+- **删除子模块时**，需要执行以下步骤：
+  1. 从 `.gitmodules` 文件中删除子模块的条目。
+  2. 从 Git 索引中移除子模块引用。
+  3. 提交删除更改。
 
 ```sh
-# 添加 -f 同时移除子模块目录
-git submodule deinit -f <path>
+git submodule deinit <子模块路径>
+git rm <子模块路径>
+rm -rf .git/modules/<子模块路径>
 ```
 
 ## 12. 忽略文件
