@@ -176,10 +176,6 @@ function sidebarGit(): DefaultTheme.SidebarItem[] {
           text: '命令',
           link: 'command-examples',
         },
-        {
-          text: '流程',
-          link: 'step-examples',
-        },
       ],
     },
   ]
