@@ -6,20 +6,20 @@
 - [Git - Reference](https://git-scm.com/docs)
 - [Git 大全 - Gitee.com](https://gitee.com/all-about-git)
 
-## 1. 配置和设置
+## 1. 配置与初始化
 
-### 1.1 设置提交代码时的用户信息
+### 1.1 用户信息配置
 
 ```sh
-# 编辑配置文件
+# 设置全局用户名和邮箱（适用于所有仓库）
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+
+# 查看当前配置
+git config --list
+
+# 编辑配置文件（全局或当前仓库）
 git config -e [--global]
-
-# 配置用户信息（全局或当前仓库）
-git config [--global] user.name "<name>"
-git config [--global] user.email "<email>"
-
-# 移除某项配置
-git config [--global] --unset user.name
 ```
 
 **说明**：
@@ -27,20 +27,14 @@ git config [--global] --unset user.name
 - `--global` 选项用于设置全局配置，如果省略该选项，只会影响当前仓库的设置。
 - 配置后，可以使用 `git config --list` 查看当前的配置信息。
 
-## 2. 创建本地仓库或克隆远程仓库
-
-### 2.1 创建本地 `git` 仓库
+### 1.2 初始化仓库
 
 ```sh
-# 新建一个目录，并将其初始化为 Git 代码库
+# 初始化新仓库
 git init [project-name]
-```
 
-### 2.2 克隆远程仓库
-
-```sh
-# 从远程仓库克隆项目，可自定义本地仓库名称
-git clone <repository_url> [<directory_name>]
+# 克隆远程仓库
+git clone <repository_url> [directory_name]
 ```
 
 **说明**：
@@ -48,115 +42,95 @@ git clone <repository_url> [<directory_name>]
 - `git clone` 会复制远程仓库内容到本地，并设置远程仓库默认名称为 `origin`。
 - 若不指定 `directory_name` ，则默认使用远程仓库的名称作为本地仓库名称。
 
-## 3. 创建文件并修改
+## 2. 仓库操作
 
 ```sh
-# 创建文件并写入 "Welcome to the project"
-echo "Welcome to the project" > README.md
+# 创建文件并写入内容
+echo "Hello Git" > README.md
 ```
 
-## 4. 暂存区操作
+## 3. 文件与暂存区
 
-### 4.1 添加文件到暂存区
+### 3.1 添加文件到暂存区
 
 ```sh
-# 将指定文件添加到暂存区
-git add <file1> <file2> ...
+# 添加指定文件
+git add file1.txt
 
-# 添加当前目录下的所有更改文件到暂存区，以下三种写法等效
-git add .
-git add -A
+# 添加所有文件（包括未跟踪文件）
 git add --all
 
-# 仅更新已跟踪文件的暂存区内容
-git add -u
+# 仅添加已跟踪文件的修改（不包含新增文件）
 git add --update
 ```
 
-### 4.2 查看暂存区状态
+### 3.2 撤销与对比
 
 ```sh
-# 查看暂存区的文件状态
-git status
+# 撤销暂存区的文件（保留工作区修改）
+git reset HEAD file1.txt
 
 # 比较工作区和暂存区之间的差异
 git diff [<filename>]
 
 # 比较暂存区和最新提交之间的差异
 git diff --cached [<filename>]
-
 ```
 
-### 4.3 查看暂存区详细信息
+### 3.3 查看暂存区状态与文件列表
 
 ```sh
+# 查看暂存区的文件状态
+git status
+
 # 查看暂存区中的文件列表
 git ls-files
-
 ```
 
-### 4.4 撤销暂存区的文件
+## 4. 提交管理
+
+### 4.1 提交与修改
 
 ```sh
-# 撤销暂存区文件，返回工作区
-git reset [<filename>]
+# 提交暂存区文件
+git commit -m "commit message"
 
-```
+# 跳过暂存区直接提交（仅限已跟踪文件）
+git commit -am "commit message"
 
-## 5. 提交操作
-
-### 5.1 提交文件
-
-```sh
-# 提交暂存区的文件并添加提交信息
-git commit -m "first commit"
-
-# 跳过暂存区直接提交已跟踪文件的更改
-git commit -am "first commit"
-```
-
-### 5.2 修改提交信息
-
-```sh
-# 修改最近的一条提交信息，并使用默认编辑器编辑
+# 修改最近一次提交（重新编辑信息或内容）
 git commit --amend
 
-# 直接修改最近提交的提交信息
+# 修改最近一次提交的提交信息
 git commit --amend -m "new commit message"
 ```
 
-### 5.3 撤销提交
-
-#### 5.3.1 使用 `git reset` 重置历史记录
+### 4.2 撤销提交
 
 ```sh
-# 重置最近的一次提交，保留修改并将文件放入暂存区
+# 软重置：保留修改到暂存区
 git reset --soft HEAD~1
 
-# 重置最近的一次提交，保留修改但不放入暂存区
+# 混合重置：保留修改到工作区（默认）
 git reset --mixed HEAD~1
 
-# 重置最近的一次提交，丢弃所有更改（慎用）
+# 硬重置：完全丢弃修改（慎用！）
 git reset --hard HEAD~1
+
+# 生成逆向提交撤销指定提交
+git revert <commit_hash>
 ```
 
-#### 5.3.2 使用 `git revert` 放弃指定提交的修改并生成新提交
-
-```sh
-# 撤销最近一次提交的修改，创建新提交记录
-git revert HEAD
-```
-
-### 5.4 查看提交统计信息
+### 4.3 查看提交统计信息
 
 ```sh
 # 查看每个提交者的提交统计信息
 git shortlog
 ```
 
-## 6. 远程仓库操作
+## 5. 远程仓库
 
-### 6.1 设置远程仓库地址
+### 5.1 远程仓库配置
 
 ```sh
 # 设置远程仓库地址，'origin' 是默认的远程仓库名称
@@ -175,7 +149,7 @@ git remote remove origin
 git remote rename origin upstream
 ```
 
-### 6.2 推送本地代码到远程仓库
+### 5.2 推送本地代码到远程仓库
 
 ```sh
 # 推送本地代码到远程仓库的 master 分支，并设置默认推送目标
@@ -190,7 +164,7 @@ git push --all origin
 git push origin --tags
 ```
 
-### 6.3 拉取远程仓库代码
+### 5.3 拉取远程仓库代码
 
 ```sh
 # 拉取远程仓库的 master 分支并合并到本地当前分支
@@ -201,9 +175,9 @@ git fetch origin
 git merge origin/master   # 或 git rebase origin/master
 ```
 
-## 7. 查看提交历史
+## 6. 查看提交历史
 
-### 7.1 查看提交记录
+### 6.1 查看提交记录
 
 ```sh
 # 查看提交历史
@@ -223,7 +197,7 @@ git log -n 5
 
 ```
 
-### 7.2 查看引用日志
+### 6.2 查看引用日志
 
 ```sh
 # 查看引用日志，显示 HEAD 和分支的历史记录
@@ -231,7 +205,7 @@ git reflog
 
 ```
 
-### 7.3 恢复丢失的提交
+### 6.3 恢复丢失的提交
 
 ```sh
 # 查看引用日志找到具体提交哈希
@@ -241,7 +215,7 @@ git reset --hard <commit_hash>
 
 ```
 
-### 7.4 查看某个提交的详细信息
+### 6.4 查看某个提交的详细信息
 
 ```sh
 # 查看某个提交的详细信息，包括提交的更改内容
@@ -249,36 +223,26 @@ git show <commit_hash>
 
 ```
 
-## 8. 分支操作概述
+## 7. 分支操作
 
 Git 分支是 Git 中非常重要的一部分，它允许你在项目中同时进行多个任务。以下是常见的 Git 分支操作及其命令。
 
-### 8.1 创建分支
-
-- **创建新分支**（不切换到新分支）：
-
-  ```sh
-  git branch <branch_name>
-  ```
-
-- **创建并切换到新分支**：
-
-  ```sh
-  #创建并切换到新分支（两种写法）
-  git switch -c <branch_name>      # Git 2.23+ 推荐
-  git checkout -b <branch_name>    # 兼容旧版本
-  ```
-
-### 8.2 切换分支
-
-- **切换到现有分支**：
+### 7.1 分支创建与切换
 
 ```sh
+# 创建新分支（不切换到新分支）
+git branch <new-branch>
+
+# 创建并切换到新分支（两种写法）
+git switch -c <new-branch>      # Git 2.23+ 推荐
+git checkout -b <new-branch>    # 兼容旧版本
+
+# 只切换分支
 git switch <branch_name>      # Git 2.23+ 推荐
 git checkout <branch_name>    # 兼容旧版本
 ```
 
-### 8.3 删除分支
+### 7.2 删除分支
 
 - **删除本地分支**：
 
@@ -299,7 +263,7 @@ git checkout <branch_name>    # 兼容旧版本
   git push origin --delete <branch_name>
   ```
 
-### 8.4 查看分支
+### 7.4 查看分支
 
 - **查看本地分支**：
 
@@ -313,7 +277,7 @@ git checkout <branch_name>    # 兼容旧版本
   git branch -a
   ```
 
-### 8.5 修改分支名称
+### 7.5 修改分支名称
 
 - **修改当前分支名称**：
 
@@ -333,7 +297,7 @@ git checkout <branch_name>    # 兼容旧版本
   git push origin --delete <old_branch>
   ```
 
-### 8.6 更新本地分支
+### 7.6 更新本地分支
 
 - **同步远程分支（删除本地已失效的远程分支引用）**：
 
@@ -347,11 +311,11 @@ git checkout <branch_name>    # 兼容旧版本
   git fetch
   ```
 
-### 8.7 分支合并
+### 7.7 分支合并
 
 分支合并允许将两个分支的历史记录融合到一起，常用的合并方式有 `git merge` 和 `git rebase`。根据不同的场景选择合适的合并策略。
 
-#### 8.7.1 合并分支
+#### 7.7.1 合并分支
 
 - **合并当前分支到目标分支**：
 
@@ -367,7 +331,7 @@ git checkout <branch_name>    # 兼容旧版本
      git merge <source_branch>
      ```
 
-#### 8.7.2 解决冲突
+#### 7.7.2 解决冲突
 
 如果在合并时发生冲突，Git 会提示需要手动解决冲突。一般流程如下：
 
@@ -394,7 +358,7 @@ git checkout <branch_name>    # 兼容旧版本
    git commit
    ```
 
-#### 8.7.3 使用 `git rebase` 合并
+#### 7.7.3 使用 `git rebase` 合并
 
 `git rebase` 可以将一个分支的提交记录“移动”到另一个分支上，使提交历史更加整洁。
 
@@ -418,7 +382,7 @@ git checkout <branch_name>    # 兼容旧版本
    git rebase --abort
    ```
 
-### 8.8 `git merge` 与 `git rebase` 区别
+### 7.8 `git merge` 与 `git rebase` 区别
 
 - **`git merge`**：会创建一个新的合并提交，保留分支的合并历史。这种方式适合于想要保留分支合并历史的场景。
 
@@ -429,9 +393,9 @@ git checkout <branch_name>    # 兼容旧版本
 - 如果你需要将不同的特性分支并入主分支并且希望保留完整的合并记录，可以使用 `git merge`。
 - 如果你希望使历史提交更加整洁，并避免额外的合并提交，可以使用 `git rebase`。
 
-### 8.9 常见问题与技巧
+### 7.9 常见问题与技巧
 
-#### 8.9.1 同步远程分支
+#### 7.9.1 同步远程分支
 
 有时候，远程仓库的分支更新较快，想要在本地分支同步远程分支，可以使用以下命令：
 
@@ -439,7 +403,7 @@ git checkout <branch_name>    # 兼容旧版本
 git pull origin <branch_name>
 ```
 
-#### 8.9.2 切换分支时未保存本地修改
+#### 7.9.2 切换分支时未保存本地修改
 
 如果你在切换分支前有本地修改，Git 会提示你有未提交的修改。此时，你可以：
 
@@ -455,7 +419,7 @@ git pull origin <branch_name>
   git stash pop
   ```
 
-#### 8.9.3 查看分支合并历史
+#### 7.9.3 查看分支合并历史
 
 使用以下命令查看分支的合并历史：
 
@@ -463,94 +427,96 @@ git pull origin <branch_name>
 git log --graph --oneline --all
 ```
 
-## 9. 标签操作
+## 8. 标签管理
 
-### 9.1 创建标签
-
-- **创建轻量级标签**
+### 8.1 创建标签
 
 ```sh
 # 创建标签
 git tag <tag_name>
+
+# 创建带注释的标签
+git tag -a v1.0 -m "Release version 1.0"
 ```
 
-- **创建带注释的标签**
+### 8.2 查看标签
 
 ```sh
-git tag -a <tag_name> -m "Tag message"
-```
-
-### 9.2 查看标签
-
-- **查看所有标签**
-
-```sh
+# 查看所有标签
 git tag
-```
 
-- **查看标签详细信息**
-
-```sh
+# 查看标签详细信息
 git show <tag_name>
 ```
 
-### 9.3 推送标签到远程仓库
+### 8.3 推送标签到远程仓库
 
 ```sh
-# 推送单个标签
+# 推送标签到远程
 git push origin <tag_name>
 
 # 推送所有未同步的标签
 git push origin --tags
 ```
 
-### 9.4 删除标签
-
-- **删除本地标签**
+### 8.4 删除标签
 
 ```sh
+# 删除本地标签
 git tag -d <tag_name>
-```
 
-- **删除远程标签**
-
-```sh
+# 删除远程标签
 git push origin --delete <tag_name>
 ```
 
-## 10. 存储操作
+## 9. 存储操作
 
 - **存储当前工作区的更改**
 
 ```sh
-git stash
+git stash [-u]
 ```
+
+- 默认会存储工作区和暂存区的修改。
+- 添加 `-u` 或 `--include-untracked` 可以存储未跟踪的文件：
 
 - **查看存储列表**
 
 ```sh
 git stash list
+# 输出
+stash@{0}: WIP on main: 5d3fd1f Fix login bug
+stash@{1}: On dev: Updated styles
+stash@{2}: Temp work on feature
 ```
 
-- **恢复存储的更改**
+- **恢复存储**
 
 ```sh
-git stash apply
+git stash apply [index]
 ```
 
-- **删除存储的更改**
+- **删除存储**
 
 ```sh
-git stash drop
+git stash drop [index]
 ```
 
-- **恢复并删除存储的更改**
+- **恢复并删除存储**
 
 ```sh
-git stash pop
+git stash pop [index]
 ```
 
-## 11. 子模块操作
+- **清空所有存储**
+
+```sh
+git stash clear
+```
+
+- `[index]` 可通过 `git stash list` 查看，例如：`git stash pop stash@{0}`未添加索引，则默认为 `stash@{0}` 例如：`git stash pop`, `stash@{0}`索引可简写为数字，例如：`git stash pop stash@{1}` 同 `git stash pop 1`
+
+## 10. 子模块操作
 
 - **添加子模块**
 
@@ -558,7 +524,7 @@ git stash pop
 git submodule add <repository_url> <path>
 ```
 
-- **初始化和更新子模块**
+- **初始化并更新子模块**
 
 ```sh
 git submodule update --init
@@ -582,7 +548,7 @@ git rm <path>                  # 从索引中移除
 rm -rf .git/modules/<path>     # 清理残留文件（谨慎操作）
 ```
 
-## 12. 忽略文件
+## 11. 忽略文件
 
 - **创建** `.gitignore` **文件**
 
@@ -604,7 +570,7 @@ git commit -m "Update .gitignore"
 git rm --cached <file_to_ignore>
 ```
 
-## 13. 常见命令简述
+## 12. 常见命令简述
 
 - **初始化仓库**：`git init`
 - **克隆仓库**：`git clone <url>`
