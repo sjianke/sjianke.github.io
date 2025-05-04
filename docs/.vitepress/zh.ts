@@ -1,4 +1,4 @@
-import { DefaultTheme, defineConfig } from 'vitepress'
+import { DefaultTheme, defineConfig } from 'vitepress';
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
@@ -7,6 +7,10 @@ export const zh = defineConfig({
   themeConfig: {
     nav: nav(),
     sidebar: {
+      '/zh/web/html/': {
+        base: 'https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Structuring_content',
+        items: sidebarHTML(),
+      },
       '/zh/web/javascript/': {
         base: '/zh/web/javascript/',
         items: sidebarJavascript(),
@@ -28,17 +32,14 @@ export const zh = defineConfig({
         items: sidebarLinux(),
       },
     },
-
     docFooter: {
       prev: '上一页',
       next: '下一页',
     },
-
     outline: {
       label: '页面导航',
       level: [2, 3],
     },
-
     lastUpdated: {
       text: '最后更新于',
       formatOptions: {
@@ -46,7 +47,6 @@ export const zh = defineConfig({
         timeStyle: 'medium',
       },
     },
-
     langMenuLabel: '多语言',
     returnToTopLabel: '回到顶部',
     sidebarMenuLabel: '菜单',
@@ -55,7 +55,7 @@ export const zh = defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
     // skipToContentLabel: '跳转到内容',
   },
-})
+});
 
 function nav(): DefaultTheme.NavItem[] {
   return [
@@ -68,6 +68,7 @@ function nav(): DefaultTheme.NavItem[] {
             {
               text: 'HTML',
               link: 'https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Structuring_content',
+              activeMatch: '/zh/web/html/',
             },
             {
               text: 'CSS',
@@ -126,7 +127,11 @@ function nav(): DefaultTheme.NavItem[] {
         // { text: 'HTTP', link: '/http-examples' },
       ],
     },
-  ]
+  ];
+}
+
+function sidebarHTML(): DefaultTheme.SidebarItem[] {
+  return [];
 }
 
 function sidebarJavascript(): DefaultTheme.SidebarItem[] {
@@ -158,9 +163,26 @@ function sidebarJavascript(): DefaultTheme.SidebarItem[] {
           text: 'this指向',
           link: 'this-examples',
         },
+        {
+          text: '异步编程/Promise/async/await',
+          link: 'async-examples',
+        },
+        {
+          text: '迭代器/生成器',
+          link: 'iterator-examples',
+        },
       ],
     },
-  ]
+    {
+      text: '示例',
+      items: [
+        {
+          text: '日历',
+          link: 'calendar-examples',
+        },
+      ],
+    },
+  ];
 }
 
 function sidebarGit(): DefaultTheme.SidebarItem[] {
@@ -178,7 +200,7 @@ function sidebarGit(): DefaultTheme.SidebarItem[] {
         },
       ],
     },
-  ]
+  ];
 }
 
 function sidebarLinux(): DefaultTheme.SidebarItem[] {
@@ -208,7 +230,7 @@ function sidebarLinux(): DefaultTheme.SidebarItem[] {
         },
       ],
     },
-  ]
+  ];
 }
 
 function sidebarMySQL(): DefaultTheme.SidebarItem[] {
@@ -230,7 +252,7 @@ function sidebarMySQL(): DefaultTheme.SidebarItem[] {
         },
       ],
     },
-  ]
+  ];
 }
 
 function sidebarNginx(): DefaultTheme.SidebarItem[] {
@@ -261,5 +283,5 @@ function sidebarNginx(): DefaultTheme.SidebarItem[] {
         },
       ],
     },
-  ]
+  ];
 }

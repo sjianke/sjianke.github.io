@@ -263,7 +263,7 @@ git checkout <branch_name>    # 兼容旧版本
   git push origin --delete <branch_name>
   ```
 
-### 7.4 查看分支
+### 7.3 查看分支
 
 - **查看本地分支**：
 
@@ -277,7 +277,7 @@ git checkout <branch_name>    # 兼容旧版本
   git branch -a
   ```
 
-### 7.5 修改分支名称
+### 7.4 修改分支名称
 
 - **修改当前分支名称**：
 
@@ -297,7 +297,7 @@ git checkout <branch_name>    # 兼容旧版本
   git push origin --delete <old_branch>
   ```
 
-### 7.6 更新本地分支
+### 7.5 更新本地分支
 
 - **同步远程分支（删除本地已失效的远程分支引用）**：
 
@@ -311,11 +311,11 @@ git checkout <branch_name>    # 兼容旧版本
   git fetch
   ```
 
-### 7.7 分支合并
+### 7.6 分支合并
 
 分支合并允许将两个分支的历史记录融合到一起，常用的合并方式有 `git merge` 和 `git rebase`。根据不同的场景选择合适的合并策略。
 
-#### 7.7.1 合并分支
+#### 7.6.1 合并分支
 
 - **合并当前分支到目标分支**：
 
@@ -331,7 +331,7 @@ git checkout <branch_name>    # 兼容旧版本
      git merge <source_branch>
      ```
 
-#### 7.7.2 解决冲突
+#### 7.6.2 解决冲突
 
 如果在合并时发生冲突，Git 会提示需要手动解决冲突。一般流程如下：
 
@@ -358,7 +358,7 @@ git checkout <branch_name>    # 兼容旧版本
    git commit
    ```
 
-#### 7.7.3 使用 `git rebase` 合并
+#### 7.6.3 使用 `git rebase` 合并
 
 `git rebase` 可以将一个分支的提交记录“移动”到另一个分支上，使提交历史更加整洁。
 
@@ -382,7 +382,7 @@ git checkout <branch_name>    # 兼容旧版本
    git rebase --abort
    ```
 
-### 7.8 `git merge` 与 `git rebase` 区别
+### 7.7 `git merge` 与 `git rebase` 区别
 
 - **`git merge`**：会创建一个新的合并提交，保留分支的合并历史。这种方式适合于想要保留分支合并历史的场景。
 
@@ -393,9 +393,9 @@ git checkout <branch_name>    # 兼容旧版本
 - 如果你需要将不同的特性分支并入主分支并且希望保留完整的合并记录，可以使用 `git merge`。
 - 如果你希望使历史提交更加整洁，并避免额外的合并提交，可以使用 `git rebase`。
 
-### 7.9 常见问题与技巧
+### 7.8 常见问题与技巧
 
-#### 7.9.1 同步远程分支
+#### 7.8.1 同步远程分支
 
 有时候，远程仓库的分支更新较快，想要在本地分支同步远程分支，可以使用以下命令：
 
@@ -403,7 +403,7 @@ git checkout <branch_name>    # 兼容旧版本
 git pull origin <branch_name>
 ```
 
-#### 7.9.2 切换分支时未保存本地修改
+#### 7.8.2 切换分支时未保存本地修改
 
 如果你在切换分支前有本地修改，Git 会提示你有未提交的修改。此时，你可以：
 
@@ -419,7 +419,7 @@ git pull origin <branch_name>
   git stash pop
   ```
 
-#### 7.9.3 查看分支合并历史
+#### 7.8.3 查看分支合并历史
 
 使用以下命令查看分支的合并历史：
 
