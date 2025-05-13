@@ -31,6 +31,10 @@ export const zh = defineConfig({
         base: '/zh/other/linux/',
         items: sidebarLinux(),
       },
+      '/zh/service/node/': {
+        base: '/zh/service/node/',
+        items: sidebarNode(),
+      },
     },
     docFooter: {
       prev: '上一页',
@@ -102,7 +106,11 @@ function nav(): DefaultTheme.NavItem[] {
     {
       text: '后端',
       items: [
-        { text: 'Node.js', link: '/nodejs-examples' },
+        {
+          text: 'Node.js',
+          link: '/zh/service/node/basic-examples',
+          activeMatch: '/zh/service/node/',
+        },
         {
           text: 'MySQL',
           link: '/zh/service/mysql/basic-examples',
@@ -144,6 +152,10 @@ function sidebarJavascript(): DefaultTheme.SidebarItem[] {
           link: 'basic-examples',
         },
         {
+          text: '作用域/作用域链',
+          link: 'scope-examples',
+        },
+        {
           text: '闭包',
           link: 'closure-examples',
         },
@@ -154,10 +166,6 @@ function sidebarJavascript(): DefaultTheme.SidebarItem[] {
         {
           text: '原型/原型链',
           link: 'prototype-examples',
-        },
-        {
-          text: '作用域/作用域链',
-          link: 'scope-examples',
         },
         {
           text: 'this指向',
@@ -281,6 +289,32 @@ function sidebarNginx(): DefaultTheme.SidebarItem[] {
           text: 'vue页面刷新丢失',
           link: 'refresh-examples',
         },
+      ],
+    },
+  ];
+}
+
+function sidebarNode(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Node',
+      items: [
+        {
+          text: '基础',
+          link: 'basic-examples'
+        },
+        {
+          text: 'Buffer（数据块）',
+          link: 'buffer-examples'
+        },
+        {
+          text: 'File System（文件系统）',
+          link: 'fs-examples'
+        },
+        {
+          text: 'Path（路径）',
+          link: 'path-examples'
+        }
       ],
     },
   ];
