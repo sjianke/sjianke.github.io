@@ -5,11 +5,10 @@ export const shared = defineConfig({
   description: '个人记录',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
   // https://vitepress.dev/reference/default-theme-config
+  cleanUrls: true,
+  lastUpdated: true,
+  metaChunk: true,
   themeConfig: {
-    // logo: '/logo.png',
-    search: {
-      provider: 'local',
-    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/sjianke' }],
   },
 })

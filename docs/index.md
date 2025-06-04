@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'SJianKe✨'
   text: '学海无涯，回头是岸'
-  tagline: 用于记录一些知识点
+  tagline: 学习笔记
   image:
     src: /logo.png
     alt: 'SJK'
@@ -36,7 +36,7 @@ features:
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
 }
 
-.VPImage:hover{
+.VPImage{
   transition: filter 0.3s linear;
   filter: drop-shadow(0px 0px 50px #0000ff6e)
 }

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { en } from './en'
 import { shared } from './shared'
 import { zh } from './zh'
-import { en } from './en'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
